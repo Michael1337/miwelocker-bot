@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy the Python script and requirements.txt file into the container
 COPY bot.py .
+COPY .env .
 COPY requirements.txt .
 
 # Install dependencies

@@ -9,8 +9,6 @@ load_dotenv()
 # Read environment variables
 TOKEN = os.getenv('TOKEN')
 PASSWORD = os.getenv('PASSWORD')
-PASTEBIN_ID = os.getenv('PASTEBIN_ID')
-PASTEBIN_PASSWORD = os.getenv('PASTEBIN_PASSWORD')
 FLAG = os.getenv('FLAG')
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -26,17 +24,15 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def commands(update: Update, context: CallbackContext) -> None:
     print(f"Received /commands command from {update.effective_user.first_name}")
-    message_template = (
+    update.message.reply_text(
         'Here are the available commands:\n'
         '/start - Start the bot and read this message.\n'
         '/flag - Get the flag.\n'
         '/commands - Get all bot commands.\n'
         '/guess <password> - Guess the password to get the flag.\n'
         '/pricing - Get current pricing.\n'
-        'Remember: A command history is pasted into bin {PASTEBIN_ID} with password {PASTEBIN_PASSWORD}.'
+        'Remember: A command history is Pasted into our public M1w3L0ck3r Bin.'
     )
-    message = message_template.format(PASTEBIN_ID=PASTEBIN_ID, PASTEBIN_PASSWORD=PASTEBIN_PASSWORD)
-    update.message.reply_text(message)
 
 def guess(update: Update, context: CallbackContext) -> None:
     if len(context.args) == 1:
